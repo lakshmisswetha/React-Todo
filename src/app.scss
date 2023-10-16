@@ -1,0 +1,335 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+#root {
+  height: 100vh;
+  .header {
+    height: 8%;
+    background-color: black;
+    color: aliceblue;
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.2;
+    padding: 7px 0 7px 3rem;
+  }
+}
+
+.main {
+  height: 92%;
+
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    .content {
+      width: 80%;
+      height: 80%;
+      display: flex;
+      justify-content: space-between;
+
+      .todo {
+        width: 30%;
+        height: 400px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 5px 5px 20px #eaeaea;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 8px;
+        padding-right: 8px;
+        .list {
+          display: flex;
+          flex-direction: column;
+          margin-top: 5px;
+          .list-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5px;
+            .to-do-list {
+              font-size: 1.8rem;
+              font-weight: 500;
+              line-height: 1.2;
+            }
+            .search-button {
+              border: none;
+              background: none;
+              cursor: pointer;
+
+              .search {
+                width: 20px;
+                height: 20px;
+              }
+            }
+          }
+
+          .search-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 5px;
+            .search-input {
+              width: 80%;
+              border-radius: 10px;
+              height: 35px;
+              padding-left: 10px;
+              font-weight: 500;
+              font-size: 0.95rem;
+            }
+            .close-button {
+              border: none;
+              background: none;
+              cursor: pointer;
+
+              .close {
+                width: 18px;
+                height: 18px;
+              }
+            }
+          }
+        }
+        #list-container {
+          flex-grow: 1;
+          margin-top: 10px;
+          margin-bottom: 10px;
+
+          ul {
+            display: flex;
+            flex-direction: column;
+            li {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 4px;
+              border-radius: 3px;
+              padding: 2px 5px;
+              cursor: pointer;
+              position: relative;
+
+              span {
+                position: absolute;
+                right: 0;
+                top: 5px;
+                right: 2px;
+
+                img {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+            }
+          }
+
+          ul li:hover {
+            background: #e2e2e2;
+          }
+        }
+
+        .create-list {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 8px 8px 8px;
+          #create-todo {
+            width: 83%;
+            font-size: medium;
+            padding-left: 5px;
+            display: flex;
+            align-items: center;
+          }
+          .add {
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .task {
+        width: 65%;
+        height: 100%;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 5px 5px 20px #eaeaea;
+        margin-left: 30px;
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .task-title {
+          height: 14%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          #title-text {
+            font-weight: 500;
+            line-height: 1.2;
+            font-size: 2rem;
+          }
+          .title-search {
+            border: none;
+            outline: none;
+            background: none;
+            cursor: pointer;
+            .title-search1 {
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+        .search-task-items {
+          height: 14%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .task-item-search {
+            width: 80%;
+            border-radius: 10px;
+            height: 38px;
+            padding-left: 10px;
+            font-weight: 500;
+            font-size: 1rem;
+          }
+          .clear-button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            .clearbtn {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
+        #task-content {
+          flex-grow: 1;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          #select-todo-message {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #a7a7a7;
+            font-size: 30px;
+            font-weight: 500;
+          }
+
+          #task-items-container {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            .task-item {
+              background-color: #e2e2e2;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 8px;
+              border-radius: 3px;
+              padding: 0.5rem;
+              cursor: pointer;
+              position: relative;
+              display: none;
+              .input-fields {
+                display: flex;
+                align-items: center;
+                .checkbox {
+                  margin-top: 1px;
+                  cursor: pointer;
+                }
+                .item-name {
+                  outline: none;
+                  border: none;
+                  background: inherit;
+                  margin-left: 15px;
+                  font-size: 16px;
+                }
+              }
+
+              .del-task-item {
+                width: 21px;
+                height: 21px;
+              }
+            }
+          }
+        }
+        .task-menu {
+          display: flex;
+          height: 10%;
+          justify-content: flex-end;
+          align-items: center;
+          .plus-btn {
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            padding: 5px;
+            cursor: pointer;
+            .plus {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .clean-btn {
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            padding: 5px;
+            cursor: pointer;
+            .clean {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #create-todo-message {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a7a7a7;
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 40%;
+  }
+  #notFound {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a7a7a7;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40%;
+  }
+  #result-not-found {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #a7a7a7;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 25%;
+  }
+}
