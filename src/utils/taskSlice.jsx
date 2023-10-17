@@ -85,6 +85,21 @@ const taskSlice = createSlice({
       });
       localStorage.setItem("tasksData", JSON.stringify(state.tasksData));
     },
+    editTask: (state, action) => {
+      const { taskTitle, oldValue, newValue } = action.payload;
+      const taskData = state.tasksData.find(
+        (task) => task.taskName === taskTitle
+      );
+      if (taskData) {
+        const itemToUpdate = taskData.itemsName.find(
+          (item) => item.name === oldValue
+        );
+        if (itemToUpdate) {
+          itemToUpdate.name = newValue;
+        }
+      }
+      localStorage.setItem("tasksData", JSON.stringify(state.tasksData));
+    },
   },
 });
 
@@ -94,5 +109,6 @@ export const {
   checkTaskItems,
   deleteItem,
   deleteAll,
+  editTask,
 } = taskSlice.actions;
 export default taskSlice.reducer;

@@ -5,6 +5,7 @@ import {
   deleteTaskItems,
   checkTaskItems,
   deleteAll,
+  editTask,
 } from "../utils/taskSlice";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -17,11 +18,13 @@ function Task() {
   const data = useSelector((store) => store.task);
   const [searchInput, setSearchInput] = useState("");
   const [showTaskItems, setShowTaskItem] = useState(false);
-
+  const [editedItemNames, setEditedItemNames] = useState({});
   const selectedTask = data.tasksData.find(
     (task) => task.taskName === titleItem
   );
+
   var selectedItemsName = selectedTask ? selectedTask.itemsName : [];
+
   const [filteredItems, setFilteredItems] = useState([]);
 
   const renderTaskItem = () => {
@@ -55,6 +58,7 @@ function Task() {
   };
 
   const [itemName, setItemName] = useState("");
+
   const handleItemSubmit = (e, titleItem) => {
     e.preventDefault();
     if (itemName != "") {
@@ -66,7 +70,6 @@ function Task() {
       );
     }
     setShowTaskItem(false);
-    setItemName("");
   };
 
   const handleDeleteItem = (item, titleItem) => {
@@ -111,6 +114,22 @@ function Task() {
     dispatch(deleteAll(titleItem));
   };
 
+  const handleEdit = (name) => {
+    console.log(name);
+  };
+  const handleItemNameChange = (item, newValue) => {
+    const updatedEditedItemNames = { ...editedItemNames };
+    updatedEditedItemNames[item.name] = newValue;
+    setEditedItemNames(updatedEditedItemNames);
+    dispatch(
+      editTask({
+        taskTitle: titleItem,
+        oldValue: item.name,
+        newValue: newValue,
+      })
+    );
+  };
+
   return (
     <div className="task">
       <TaskTitle handleSearchText={handleSearch} />
@@ -142,8 +161,8 @@ function Task() {
                         type="text"
                         className="item-name"
                         placeholder="enter your task"
-                        onChange={(e) => setItemName(e.target.value)}
                         value={item.name}
+                        onChange={(e) => setItemName(e.target.value)}
                       />
                     </form>
                   </div>
@@ -172,11 +191,14 @@ function Task() {
                       action=""
                     >
                       <input
+                        spellCheck="false"
                         type="text"
                         className="item-name"
                         placeholder="enter your task"
-                        onChange={(e) => setItemName(e.target.value)}
-                        value={item.name}
+                        value={editedItemNames[item.name] || item.name}
+                        onChange={(e) =>
+                          handleItemNameChange(item, e.target.value)
+                        }
                       />
                     </form>
                   </div>
